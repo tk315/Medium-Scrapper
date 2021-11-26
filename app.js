@@ -5,7 +5,6 @@ const mod = require(path.join(__dirname,'Controller','script.js'));
 const db = require('./Model/database.js');
 const app=express();
 
-
 const port=process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({extended:false}));
@@ -15,14 +14,19 @@ app.get('/',(req,res)=>{
 });
 
 app.get('/history',(req,res)=>{
+    db.processquery();
     res.sendFile(path.join(__dirname,'View','history.html'));
 });
 
+app.get('/gethistory',(req,res)=>{
+    let obj=db.displayquery();
+    console.log(obj);
+    res.send(obj);
+})
+
 app.post('/api',(req,res)=>{
     mod.search(req.body.tagname);
-    console.log("very first");
-    db.searchquery(req.body.tagname);
-    db.displayquery();
+    db.insertquery(req.body.tagname);
     res.sendStatus(200);
 });
 

@@ -17,20 +17,51 @@ conn.connect(function(error){
     }
 });
 
-function displayquery()
+let tag=[];
+let date=[];
+
+function processquery()
 {
-    conn.query("select tag, date from history order by id desc",function(error,rows,fields){
+    tag.length=0;
+    date.length=0;
+    conn.query("select tag from history order by id desc",function(error,data){
         if(!!error){
             console.log('Error in the Query');
         }
         else {
             console.log('Successful Query');
-            console.log(rows); 
-            console.log(fields); 
+            
+            for(let i=0;i<data.length;i++)
+            {
+                tag.push(data[i].tag);
+            }
+         
+        }
+    });
+    conn.query("select date from history order by id desc",function(error,data){
+        if(!!error){
+            console.log('Error in the Query');
+        }
+        else {
+            console.log('Successful Query');
+            
+            for(let i=0;i<data.length;i++)
+            {
+                date.push(data[i].date);
+            }
+           
         }
     });
 }
-function searchquery(tag)
+function displayquery()
+{
+    let obj={
+        "tag":tag,
+        "date":date
+    }
+    return obj;
+}
+function insertquery(tag)
 {
     let tdate= new Date;
     let s=`insert into history (tag,date) values (${JSON.stringify(tag)},${JSON.stringify(tdate).slice(0,11)+"\""})`;
@@ -43,4 +74,4 @@ function searchquery(tag)
         }
     });
 }
-module.exports = {searchquery,displayquery};
+module.exports = {insertquery,displayquery,processquery};

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
       .center{
@@ -15,6 +16,9 @@
       .navbar-brand{
         margin-left:60px;
       }
+      .right{
+          margin-right: 60px;
+      }
     </style>
 </head>
 <body>
@@ -24,25 +28,61 @@
     </nav>
     <br/>
     <div id="component">
-     
+        <nav class="center navbar navbar-light bg-light">
+            <div class="navbar-brand">Loading..</div>
+            <div class="right navbar-brand">Loading..</div>
+        </nav>
+        <br>
+        <nav class="center navbar navbar-light bg-light">
+            <div class="navbar-brand" >Loading..</div>
+            <div class="right navbar-brand">Loading..</div>
+        </nav>
+        <br>
+        <nav class="center navbar navbar-light bg-light">
+            <div class="navbar-brand" >Loading..</div>
+            <div class="right navbar-brand">Loading..</div>
+        </nav>
     </div>
-    <nav class="center navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-    </nav>
-    <br>
-    <nav class="center navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-    </nav>
-    <br>
-    <nav class="center navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">Navbar</a>
-    </nav>
-      
-      
-      
+
     
-    <script>
-      
+    <script>   
+        setTimeout(()=>{
+            document.getElementById("component").innerHTML="";
+            let arr={};
+
+            $.ajax({
+            type:'get',
+            url:'/gethistory',
+            async:false,
+            success:function(data){
+                arr=data;
+                console.log(data);
+              }
+            });
+
+            var global=document.getElementById("component");
+            for(let i=0;i<arr.tag.length;i++)
+            {
+              var a1 = document.createElement("div");
+              a1.classList.add("center");
+              a1.classList.add("navbar");
+              a1.classList.add("navbar-light");
+              a1.classList.add("bg-light");
+                var b1 = document.createElement("div");
+                b1.classList.add("navbar-brand");
+                b1.innerText=arr.tag[i];
+                var b2 = document.createElement("div");
+                b2.classList.add("right");
+                b2.classList.add("navbar-brand");
+                b2.innerText=arr.date[i];
+              a1.appendChild(b1);
+              a1.appendChild(b2);
+              var a2 = document.createElement("br");
+
+              global.appendChild(a1);
+              global.appendChild(a2);
+            }
+        },500);
     </script>
 </body>
 </html>

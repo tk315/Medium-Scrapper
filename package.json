@@ -8,6 +8,7 @@
     "cheerio": "^1.0.0-rc.10",
     "express": "^4.17.1",
     "http-msgs": "^1.0.9",
+    "make-synchronous": "^1.0.0",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.15",
     "request": "^2.88.2"
