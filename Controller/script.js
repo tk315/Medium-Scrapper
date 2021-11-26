@@ -26,9 +26,6 @@ function handle(html)
 
     let links = seltool('.postArticle-content a');
 
-
-    console.log(links.length);
-    console.log("title length:",title.length);
     if(title.length==0){for(let i=0;i<links.length;i++){title.push(seltool(links[i]).text());}}
     else {for(let i=0;i<links.length;i++){title[i]=seltool(links[i]).text();}}
     console.log("first");

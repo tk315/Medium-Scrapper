@@ -18,17 +18,12 @@ app.get('/',(req,res)=>{
 
 app.post('/api',(req,res)=>{
     mod.search(req.body.tagname);
-
     httpMsgs.sendJSON(req,res);
-    
 });
 
 app.get('/api2',(req,res)=>{
-    
     let arr=mod.getjson();
-    console.log(arr);
     httpMsgs.sendJSON(req,res,arr);
-
 });
 
 app.listen(port);
