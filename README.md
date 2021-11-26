@@ -1,1 +1,1 @@
-# Medium-Scrapper-GoComet
+# Medium-Scrapper

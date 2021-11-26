@@ -1,9 +1,9 @@
 const request =require('request');
 const cheerio = require('cheerio');
 
-function search(tag)
+async function search(tag)
 {
-    request(`https://medium.com/search/posts?q=${tag}&count=10`,callbackfun);
+    request(`https://medium.com/search/posts?q=${tag}&count=10`, await callbackfun);
 }
 
 function callbackfun(error, response, html)

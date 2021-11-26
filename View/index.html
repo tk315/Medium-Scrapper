@@ -39,24 +39,26 @@
     <script>
       async function postreq(tag)
       {
+        document.getElementById("component").innerHTML="";
         let j={
           "tagname":tag
         }
-        
-        console.log(tag);
-        console.log(JSON.stringify(j));
+
         $.ajax({
-          type:'post',
-          url:'/api',
-          data:j,
-          async:false,
-          success:function(data){
-            console.log("Success");
-          }
+        type:'post',
+        url:'/api',
+        data:j,
+        async:false
         });
 
-      
 
+        await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 5000)
+        );
+
+        
         let arr=[];
         $.ajax({
           type:'get',
@@ -66,24 +68,16 @@
             for(let i=0;i<data.title.length;i++)
             {
               let temp=data.title[i];
-              console.log(temp);
               arr.push(temp);
             }
-            
           }
         });     
         console.log(arr);
+
+       
         var global=document.getElementById("component");
-
-
-        console.log("first",arr);
-        let temp2=arr[0];
-        console.log("temp2",temp2);
-        
         for(let i=0;i<10;i++)
         {
-          console.log("browser last");
-
           var a1 = document.createElement("div");
           a1.classList.add("card");
           a1.classList.add("center");
