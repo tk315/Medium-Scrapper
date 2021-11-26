@@ -18,20 +18,28 @@ function callbackfun(error, response, html)
     }
 }
 
+var title = [];
+
 function handle(html)
 {
     let seltool=cheerio.load(html);
 
     let links = seltool('.postArticle-content a');
-    
+
 
     console.log(links.length);
-
-    for(let i=0;i<links.length;i++)
-    {
-        console.log(seltool(links[i]).text());
+    console.log("title length:",title.length);
+    if(title.length==0){for(let i=0;i<links.length;i++){title.push(seltool(links[i]).text());}}
+    else {for(let i=0;i<links.length;i++){title[i]=seltool(links[i]).text();}}
+    console.log("first");
+}
+function getjson()
+{   
+    console.log("second");
+    let ans={
+        "title":title
     }
-  
+    return ans;
 }
 // // h3 .graf graf--h3 graf-after--figure graf--title
 // // h3 .graf graf--h3 graf-after--figure graf--title
@@ -46,4 +54,4 @@ function handle(html)
 //let tags = seltool('.ds-link.ds-link--styleSubtle.u-accentColor--textDarken');
 //let responses = seltool('.ds-link.ds-link--styleSubtle.u-accentColor--textDarken');
 
-module.exports = {search};
+module.exports = {search,getjson};
