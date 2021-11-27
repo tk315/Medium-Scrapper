@@ -20,13 +20,13 @@ app.get('/history',(req,res)=>{
 
 app.get('/gethistory',(req,res)=>{
     let obj=db.displayquery();
-    console.log(obj);
     res.send(obj);
 })
 
 app.post('/api',(req,res)=>{
     mod.search(req.body.tagname);
     db.insertquery(req.body.tagname);
+    
     res.sendStatus(200);
 });
 
@@ -34,5 +34,6 @@ app.get('/api2',(req,res)=>{
     let arr=mod.getjson();
     res.send(arr);
 });
+
 
 app.listen(port);

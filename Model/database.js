@@ -13,7 +13,7 @@ conn.connect(function(error){
         console.log('Error');
     }
     else{
-        console.log('Connected');
+        // console.log('Connected');
     }
 });
 
@@ -29,7 +29,7 @@ function processquery()
             console.log('Error in the Query');
         }
         else {
-            console.log('Successful Query');
+            // console.log('Successful Query');
             
             for(let i=0;i<data.length;i++)
             {
@@ -70,7 +70,7 @@ function insertquery(tag)
             console.log('Error in the Query');
         }
         else {
-            console.log('Successfully Inserted');
+            // console.log('Successfully Inserted');
         }
     });
 }
