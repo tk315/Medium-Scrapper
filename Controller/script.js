@@ -14,8 +14,17 @@ let blog=[];
 
 function search(tag)
 {
-    //"https://medium.com/tag/nodejs/latest"
+    links.length=0;
+    title.length=0;
+    creator.length=0;
+    tags.length=0;
+    upload.length=0;
+    time.length=0;
+    blog.length=0;
+    if(tag.length===0)return;
+
     const str=`https://medium.com/tag/${tag}/latest`;
+    console.log(str);
     request(str,(error, response, html)=>{
         if(error)
         {
@@ -25,47 +34,47 @@ function search(tag)
         {         
             let $=cheerio.load(html);
 
-            links.length=0;
+            
             $('.ea.l a').each((i,el)=>{
                 links.push($(el).attr('href'));
             });
             // console.log(links);
         
-            title.length=0;
+           
             $('h2').each((i,el)=>{
                 if(i<10)title.push($(el).text());
             });
             // console.log(title);
         
-            creator.length=0;
+           
             // .t.ag.cm
             $('.ae.fj h4').each((i,el)=>{
                 if(i<10)creator.push($(el).text());
-            });
+            }).get(0);
             // console.log(creator);
         
             
-            tags.length=0;
+           
             $('.ef.cq.eg.l a').each((i,el)=>{
                 tags.push($(el).text());
             });
             // console.log(tags);
         
-            upload.length=0;
+            
 
             $('.ae.t p').each((i,el)=>{
                 if(i<10)upload.push($(el).text());
             });
             // console.log(upload);
         
-            time.length=0;
+          
             $('.ae.fj span').each((i,el)=>{
                 let temp=$(el).text();
                 if(temp.length>1)time.push(temp);   
             });
             // console.log(time);
 
-            blog.length=0;
+           
             $('.ae.fj h3').each((i,el)=>{
                 blog.push($(el).text());
             });

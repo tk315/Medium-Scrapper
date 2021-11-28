@@ -30,6 +30,19 @@
         margin-right: 10px;
         color: purple;
       }
+      #tags{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+       
+      }
+      .newbtn{
+        margin: 2px;
+      }
+      .head{
+        margin-right: 15px;
+        margin-top: 5px;
+      }
 
     </style>
 </head>
@@ -43,22 +56,22 @@
         </form>
     </nav>
     <br/>
-    <!-- <div id="tags">
-      <button class="btn btn-outline-success" type="button" onclick="location.href='/history'">History</button>
-      <button class="btn btn-outline-success" type="button" onclick="location.href='/history'">History</button>
-      <button class="btn btn-outline-success" type="button" onclick="location.href='/history'">History</button>
-    </div> -->
+    <div id="tags">
 
+    </div>
+    <br>
     <div id="component">
 
     </div>
    
     
     <script>
+ 
       function pending()
       {
         
         document.getElementById("component").innerHTML="";
+        document.getElementById("tags").innerHTML="";
         var global=document.getElementById("component");
 
         for(let i=0;i<10;i++)
@@ -161,11 +174,38 @@
           }
         });     
 
-    
+        if(obj.links.length==0){
+          document.getElementById("component").innerHTML="";
+          var global=document.getElementById("tags");
+          var a1 = document.createElement("h4");
+          a1.classList.add("head");
+          a1.innerText="Page not Found";
+          global.appendChild(a1);
+          return;
+        }
+        
+        var global=document.getElementById("tags");
+        var a1 = document.createElement("h4");
+        a1.classList.add("head");
+        a1.innerText="Related Tags:";
+        global.appendChild(a1);
 
-         for(let j=0;j<10;j++)
+        for(let i=0;i<obj.tags.length;i++)
+        {
+          var b1 = document.createElement("button");
+          b1.classList.add("newbtn");
+          b1.classList.add("btn");
+          b1.classList.add("btn-outline-success");
+          b1.innerText=obj.tags[i];
+          global.appendChild(b1);
+        }
+        
+        
+
+         for(let j=0;j<obj.links.length;j++)
           {
             
+           
             let a=document.getElementsByClassName('card-body');
             a[j].getElementsByClassName('card-text')[0].innerText="Loading..";
             a[j].getElementsByClassName('card-title')[0].innerText="Loading..";
