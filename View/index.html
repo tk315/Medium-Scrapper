@@ -43,7 +43,6 @@
         margin-right: 15px;
         margin-top: 5px;
       }
-
     </style>
 </head>
 <body>
@@ -57,19 +56,13 @@
     </nav>
     <br/>
     <div id="tags">
-
     </div>
     <br>
     <div id="component">
-
     </div>
-   
-    
     <script>
- 
       function pending()
       {
-        
         document.getElementById("component").innerHTML="";
         document.getElementById("tags").innerHTML="";
         var global=document.getElementById("component");
@@ -199,29 +192,22 @@
           b1.innerText=obj.tags[i];
           global.appendChild(b1);
         }
-        
-        
-
+    
          for(let j=0;j<obj.links.length;j++)
           {
-            
-           
             let a=document.getElementsByClassName('card-body');
             a[j].getElementsByClassName('card-text')[0].innerText="Loading..";
             a[j].getElementsByClassName('card-title')[0].innerText="Loading..";
             a[j].getElementsByClassName('card-text')[1].innerText="Loading..";
             a[j].getElementsByClassName('idetails')[0].innerText="Loading..";
             a[j].getElementsByClassName('idetails')[1].innerText="Loading..";
-            
-           
-
+   
             await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
                 }, 500)
             );
-
-            
+ 
             a[j].getElementsByClassName('card-text')[0].innerText=obj.creator[j];
             a[j].getElementsByClassName('card-title')[0].innerText=obj.title[j]
             a[j].getElementsByClassName('card-text')[1].innerText=obj.blog[j];
@@ -235,7 +221,6 @@
 
           } 
       }
-
     </script>
 </body>
 </html>
