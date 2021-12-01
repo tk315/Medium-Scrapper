@@ -25,7 +25,7 @@ app.get('/gethistory',(req,res)=>{
 
 app.post('/api',(req,res)=>{
     mod.search(req.body.tagname);
-    db.insertquery(req.body.tagname);
+    //db.insertquery(req.body.tagname);
     res.sendStatus(200);
 });
 

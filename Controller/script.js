@@ -33,7 +33,11 @@ function search(tag)
 
             $('a').each((i,el)=>{
                
-                if($(el).attr().class!=undefined && $(el).attr().class.length==44 && $(el).attr('href')[0]=='/' && $(el).attr('href')[1]=='@')links.push($(el).attr('href'));
+                if($(el).attr().class!=undefined && $(el).attr().class.length==44 && $(el).children().length==1 && $(el).children().children().length==2)
+                {
+                    links.push($(el).attr('href'));
+                    console.log($(el).children().length);
+                }
             });
            
             $('h2').each((i,el)=>{
@@ -50,7 +54,7 @@ function search(tag)
 
             $('p').each((i,el)=>{
                 let temp=$(el).text();
-                console.log($(el).attr().class.length,"  ",$(el).text());
+                //console.log($(el).attr().class.length,"  ",$(el).text());
                 if($(el).attr().class.length==34)upload.push(temp);
             });
           
