@@ -36,7 +36,7 @@ function search(tag)
                 if($(el).attr().class!=undefined && $(el).attr().class.length==44 && $(el).children().length==1 && $(el).children().children().length==2)
                 {
                     links.push($(el).attr('href'));
-                    console.log($(el).children().length);
+                    // console.log($(el).children().length);
                 }
             });
            
@@ -48,8 +48,8 @@ function search(tag)
                 if($(el).attr().class!=undefined && $(el).attr().class.length==38)creator.push($(el).text());
             });
            
-            $('.ef.cq.eg.l a').each((i,el)=>{
-                tags.push($(el).text());
+            $('a').each((i,el)=>{
+                if($(el).attr().class!=undefined && $(el).attr().class.length==2 && $(el).children().length==1 && tags.includes($(el).text())==false){tags.push($(el).text());}
             });
 
             $('p').each((i,el)=>{
@@ -67,7 +67,11 @@ function search(tag)
             $('h3').each((i,el)=>{
                 if(i>=1 && i<=10)blog.push($(el).text());
             });
-        }
+
+            //     $('div').each((i,el)=>{
+            //         if($(el).attr().class!=undefined && $(el).attr().class.length==7 && ($(el).children().length==3 ||  $(el).children().length==2) && $(el).text().length>3)blog.push($(el).get()[1].text()); 
+            //     });
+            }
     });    
 }
 
