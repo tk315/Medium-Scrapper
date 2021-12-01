@@ -167,7 +167,7 @@
           }
         });     
 
-        if(obj.links.length==0){
+        if(obj.title.length==0){
           document.getElementById("component").innerHTML="";
           var global=document.getElementById("tags");
           var a1 = document.createElement("h4");
@@ -193,7 +193,7 @@
           global.appendChild(b1);
         }
     
-         for(let j=0;j<obj.links.length;j++)
+         for(let j=0;j<obj.title.length;j++)
           {
             let a=document.getElementsByClassName('card-body');
             a[j].getElementsByClassName('card-text')[0].innerText="Loading..";
@@ -213,7 +213,8 @@
             a[j].getElementsByClassName('card-text')[1].innerText=obj.blog[j];
             a[j].getElementsByClassName('idetails')[0].innerText=obj.upload[j];
             a[j].getElementsByClassName('idetails')[1].innerText=obj.time[j];
-            if(obj.links[j][0]=='/')
+
+            if(obj.links.length>0 && obj.links[j][0]=='/')
             {
               a[j].getElementsByTagName('a')[0].href=`https://medium.com${obj.links[j]}`;
             }
