@@ -4,7 +4,7 @@ var conn = mysql.createConnection({
     host: "mediumscrapper.mysql.database.azure.com", 
     user: "mediumscrapper@mediumscrapper", 
     password: "Password@123", 
-    database: "mediumscraper", 
+    database: "mediumscrapper", 
     port: 3306
 });
 
